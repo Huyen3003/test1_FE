@@ -26,41 +26,101 @@ convert(str_output);
 //ouput: mang moi ko trung nhau 
 //const sentence = prompt("nhap vao 1 mang, cach nhau boi dau (,)");
 //let arr = sentence.split(","); 
-//Bai 4: 
-const employers = []; 
-//Tao danh sach nhan vien; 
-let loop  = true; 
-while( loop) { 
- const choose = prompt (" choose C/R/U/D"); 
- if (choose == "C") { 
-     const newemployer = Object();
-     newemployer.name = "Nhap vao ten"; 
-     newemployer.age = "Nhap vao tuoi";
-     newemployer.salary = "Nhap vao luong";
-     newemployer.job = "Nhap vao chuc vu";
-     employers.push(newemployer);
-     for (let i = 1; i <= employers.length; i++) {
-         console.log(employers[i]); 
-     } 
-     } 
-if (choose == "R") { 
-    for (let i = 0; i <= employers.length -1; i++) { 
-        console.log(employers[i]);
-     }
-  if (userInput == "U") { 
-     //update luong
-    const ten = prompt ("Ten nhan vien muon update ");
-    let x = employers.name.indexOf(ten); 
-    employers[x].salary = prompt(" tuoi ");
+// Bài 4: 
 
- if (userInput == "D") { 
-    // chon vi tri nhan vien muon xoa 
-    const index = Number(prompt("vi tri nhan vien muon xoa")) - 1; 
-    delete(employers[index]); 
-     }
- } else if( userInput === "E") { 
-     //break; 
-    loop = false; 
-     }
+//Tao danh sach nhan vien; 
+const Academy = [
+    {
+        name : "John", 
+        age : 30, 
+        salary : 40000000, 
+        job : "manager"
+    }, 
+    {
+        name : "Sam", 
+        age : 25, 
+        salary : 20000000, 
+        job : "worker"
+    },
+    {
+        name : "Linda", 
+        age : 23, 
+        salary : 15000000, 
+        job : "worker"
+    }
+]; 
+//Tao hàm lọc theo lương hoặc chức vụ; 
+function readfilter(arr, keyfilter) { 
+    let newarr = []; 
+if (keyfilter == "S") {
+let valeS = Number(prompt("Input salary")); 
+for (let x in arr)  { 
+    if (arr[x].salary==valeS) {
+        newarr.push(arr[x]);
+    }
 }
+} else if (keyfilter == "J") { 
+let valueJ = prompt("Input position").toLowerCase(); 
+for (let x in arr) { 
+    arr[x].job.toLowerCase();
+    if (arr[x].job == valueJ) { 
+    newarr.push(arr[x]);
+    }
+  } 
+ }
+ return console.table(newarr);
 }
+
+//Main
+let loop  = true; 
+while(loop) { 
+ const choose = prompt (" choose C - Creat/R - Read/U - update/D - Delete/ E- Exit").toUpperCase(); 
+ if (choose == "C") { 
+     const newemployer = new Object();
+     newemployer.name= prompt("Input name"); 
+     newemployer.age = Number(prompt("Input age"));
+     newemployer.salary = Number(prompt("Input salary"));
+     newemployer.job = prompt("Input position");
+     Academy.push(newemployer);
+        }
+ else if (choose == "R") { 
+let c = Number(prompt ("choose 1 - read all or 2 - read function")); 
+if (c==1) {
+    for (let x in Academy) { 
+        console.log("------------------------------");
+       console.log("Name:" + Academy[x].name);
+       console.log("Age:" + Academy[x].age);
+       console.log("Salary:" + Academy[x].salary);
+       console.log("Job:" + Academy[x].job);
+       //console.table(Academy);
+                    }
+} else if(c==2) {
+    let keyfilter = prompt("Read for S - Salary/ J - Position").toUpperCase();
+    readfilter(Academy,keyfilter); 
+    }
+ } else if (choose == "U") { 
+    let namefind = prompt("Inper name to find").toLowerCase();
+    for (let x in Academy) { 
+        if (Academy[x].name.toLowerCase() == namefind) 
+        {
+         Academy[x].name = prompt("Update name"); 
+         Academy[x].age = Number(prompt("Update age")); 
+         Academy[x].salary = Number(prompt("update salary")); 
+         Academy[x].job = prompt("update job"); 
+         console.log(Academy[x]); 
+         }
+} 
+} else if (choose == "D") { 
+    let namef = prompt("Inper name to find").toLowerCase();
+    for (let x in Academy) { 
+        if (Academy[x].name.toLowerCase() == namef) 
+        {
+         delete(Academy[x]); 
+         }
+      } 
+    console.table(Academy);
+} else if( userInput === "E") { 
+    //break; 
+   loop = false; 
+    }
+};
