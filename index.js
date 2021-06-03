@@ -27,6 +27,7 @@ convert(str_output);
 //const sentence = prompt("nhap vao 1 mang, cach nhau boi dau (,)");
 //let arr = sentence.split(","); 
 // Bài 4: 
+/*
 
 //Tao danh sach nhan vien; 
 const Academy = [
@@ -124,3 +125,49 @@ if (c==1) {
    loop = false; 
     }
 };
+*/ 
+// Bai 5: 
+let day = Number(prompt("Input day")); 
+let month = Number(prompt("Input month")); 
+let year = Number(prompt("Input year")); 
+switch(month) { 
+    case 1 : case 3 : case 5: case 7: case 8: case 10: case 12: 
+    if (day>0 && day <= 31) {
+      console.log(`Ngay ${day}/ ${month}/${year} la hop le`);  
+      console.log(`Ngay tiep theo la`) ; 
+      if (day==31) { 
+          if (month == 12) {console.log(`1/1/${year +1}`); 
+        } else { console.log(`1/${month + 1}/${year}`);
+        }
+    } else { console.log(`${day +1} /${month}/${year} `);}
+    break; 
+    }else { console.log(`Ngay ${day}/ ${month}/${year} la khong hop le`);  
+            break; }
+    case 4: case 6: case 9: case 11: 
+    if (day>0 && day <= 30) {
+        console.log(`Ngay ${day}/ ${month}/${year} la hop le`);  
+        console.log(`Ngay tiep theo la`) ; 
+      if (day==30) { 
+          console.log(`1/${thang}/${year}`); 
+        } else { console.log(`${day +1} /${month}/${year} `);}
+        break; 
+      }else { console.log(`Ngay ${day}/ ${month}/${year} la khong hop le`);  
+              break; }
+      case 2: 
+        if (day>0 && day <= 29 && year%4==0 ) {
+            console.log(`Ngay ${day}/ ${month}/${year} la hop le`);  
+            if (day == 29 ) {
+                console.log(`Ngay tiep theo la: 1/3/${year}`);
+            } else {console.log(`Ngay tiep theo la ${day+1}/ ${month}/${year} `) }
+            break; 
+          }else if ( day>0 && day <= 28 && year%4!=0) { 
+              console.log(`Ngay ${day}/ ${month}/${year} la hop le`);
+              if (day == 28 ) {
+                console.log(`Ngay tiep theo la: 1/3/${year}`);
+            } else {console.log(`Ngay tiep theo la ${day+1}/ ${month}/${year} `) }
+            break; 
+          }
+       else { 
+        console.log(`Ngay ${day}/ ${month}/${year} la khong hop le`)
+       }
+}
